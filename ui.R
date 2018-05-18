@@ -78,15 +78,14 @@ shinyUI <- dashboardPage( skin = "red",
     # Third tab content
     tabItem(tabName = "charts",
             fluidRow(
+              box(
+                width = 8, title = "Graph",
+                plotOutput("myplot")),
               valueBoxOutput("rate"),
               valueBoxOutput("count"),
-              valueBoxOutput("users")
-            ),
-            fluidRow(
-              box(
-                width = 12, title = "Graph",
-                plotOutput("myplot"))
-            )   
+              valueBoxOutput("users"),
+              valueBoxOutput("bestTrt")
+            )
     )
   )
  )
