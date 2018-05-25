@@ -1,120 +1,187 @@
-shinyServer(
-  function(input, output, session){
-  
-    source("func.R") # calls function file
+#############################################################################
+# Shiny Server 
+# @author mitja seibold \email{mitja.seibold@student.uva.nl}
+# @created May 2018
 
-  ################################################    
+# function that represents the server of the shiny app
+
+# @param input, output, session
+
+# @return updates graph depending on the output of the polya's urn including different info boxes regarding best treatments etc
+
+###############################################################################
+shinyServer(function(input, output, session) {
+  
+  ################################################
   ##### get reactive variables ###################
-  ################################################  
-    
-    nbrT <- reactive({ as.numeric(input$`Number of Treatments`)}) 
-    nbrP <- reactive({ as.numeric(input$`Number of Patients`)})
-    nbrS <- reactive({ as.numeric(input$`Number of Simulations`)})
+  ################################################
+  inpVer <- reactive({
+    input$Version
+  })
   
-    polya <- reactive({polyasUrnFunc(nbrT(),nbrP(),nbrS())})
-    
-    
-##################### functions ##############################    
-    
-      output$rate <- renderValueBox({
-      valueBox(
-        value = input$`Number of Treatments`,
-        subtitle = "Number of Treatments",
-        icon = icon("download")
-      )
+  nbrT <-
+    reactive({
+      checkValue(as.numeric(input$`Number of Treatments`))
     })
-    
-    output$users <- renderValueBox({
-      valueBox(
-        value = input$`Number of Patients`,
-        subtitle = "Number of Patients",
-        icon = icon("users")
-      )
+  nbrP <-
+    reactive({
+      checkValue(as.numeric(input$`Number of Patients`))
     })
-    
-    output$count <- renderValueBox({
-      valueBox(
-        value = input$`Number of Simulations`,
-        subtitle = "Number of Simulations",
-        icon = icon("area-chart"),
-        color = "yellow"
-      )
+  nbrS <-
+    reactive({
+      checkValue(as.numeric(input$`Number of Simulations`))
     })
-    
-    output$myplot <- renderPlot({
-      
-      
-
-      ####################################
-      ###### get variables ###############
-      
-      verType <- input$Version
-      
-      
-      #nbrTre <- checkValue(nbrTre)
-      #nbrPat <- nbrP()
-      #nbrPat <- checkValue(nbrPat)
-      #nbrSim <- nbrS()
-      #nbrSim <- checkValue(nbrSim)
-      nbrPlt <- as.numeric(input$Plot3BestTrts)
-      
-      # advanced variables
-      isBalls   <- input$BegBalls
-      nbrBalls1 <- as.numeric(input$begNbrOfBalls1)
-      nbrBalls1 <- checkValue(nbrBalls1)
-      nbrBalls2 <- as.numeric(input$begNbrOfBalls2)
-      nbrBalls2 <- checkValue(nbrBalls2)
-
-      isReturn  <- input$ReturnBalls
-      nbrRetur1 <- as.numeric(input$nbrOfReturns1)
-      nbrRetur1 <- checkValue(nbrRetur1)
-      nbrRetur2 <- as.numeric(input$nbrOfReturns2)
-      nbrRetur2 <- checkValue(nbrRetur2)
-
-      isRelapse <- input$Relapse
-      nbrRelap1 <- as.numeric(input$nbrOfRelapse1)
-      nbrRelap2 <- as.numeric(input$nbrOfRelapse2)
-     
-      
-      ######################################
-      ###### pipeline #####################
-      
-      if(verType == "simple"){                    # simulates urn in simple mode (only two treatments)
-        plotRatio(polya(),verType)
-      }else if(verType == "intermediate"){        # simulates urn in intermediate (>2 treatments available)
-        plotRatio(polya(),verType,nbrPlt)
-      }else{                                      # simulates urn in advanced mode
-        if(isBalls == "No"){
-          print("isBallsNo")
-          nbrBalls1 = 1
-          nbrBalls2 = 1
-        }
-        
-        if(isReturn == "No"){
-          print("isReturnNo")
-          nbrRetur1 = 1
-          nbrRetur2 = 1
-        }
-        
-        if (isRelapse == "No"){
-          print("isReleaseNo")
-          nbrRelap1 = 0
-          nbrRelap2 = 0
-        }
-        
-        plotRatio(polya(), verType)
-       
-      }
-    }
+  
+  probTrt <- reactive({as.numeric(input$`Treatment Success`)})
+  
+  probTrt1 <- reactive({as.numeric(input$`Treatment Success1`)})
+  probTrt2 <- reactive({as.numeric(input$`Treatment Success2`)})
+  
+  nbrBalls1 <-
+    reactive({
+      checkValue(as.numeric(input$begNbrOfBalls1))
+    })
+  nbrBalls2 <-
+    reactive({
+      checkValue(as.numeric(input$begNbrOfBalls2))
+    })
+  
+  nbrRetur1 <-
+    reactive({
+      checkValue(as.numeric(input$nbrOfReturns1))
+    })
+  nbrRetur2 <-
+    reactive({
+      checkValue(as.numeric(input$nbrOfReturns2))
+    })
+  
+  nbrRelap1 <- reactive({
+    as.numeric(input$nbrOfRelapse1)
+  })
+  nbrRelap2 <- reactive({
+    as.numeric(input$nbrOfRelapse2)
+  })
+  
+######################################################
+############ run polya urn simulation ################ 
+######################################################
+ 
+   # running simple version
+  polya    <- reactive({
+    polyasUrnFuncSimple(nbrP(), nbrS(), nbrT(), probTrt())
+  })
+  # running the advanced version
+  polyaAdv    <- reactive({
+    polyasUrnFuncAdv(
+      nbrP(),
+      nbrS(),
+      nbrT(),
+      probTrt1(),
+      probTrt2(),
+      nbrBalls1(),
+      nbrBalls2(),
+      nbrRetur1(),
+      nbrRetur2(),
+      nbrRelap1(),
+      nbrRelap2()
     )
+  })
+  
+  
+  
+  
+  ###################################################
+  ############# create Value Boxes ##################
+  ###################################################
+  
+  output$rate <- renderValueBox({
+    valueBox(
+      value = input$`Number of Treatments`,
+      subtitle = "Number of Treatments",
+      icon = icon("download"),
+      color = "blue"
+    )
+  })
+  
+  output$users <- renderValueBox({
+    valueBox(
+      value = input$`Number of Patients`,
+      subtitle = "Number of Patients",
+      icon = icon("users"),
+      color = "blue"
+    )
+  })
+  
+  output$count <- renderValueBox({
+    valueBox(
+      value = input$`Number of Simulations`,
+      subtitle = "Number of Simulations",
+      icon = icon("area-chart"),
+      color = "yellow"
+    )
+  })
+  
+#########################################
+########## create plot ##################
+#########################################
+  
+  output$myplot <- renderPlot({
     
-    output$bestTrt <- renderValueBox({
-      valueBox(
-        value = bestTrt(polya()),
-        subtitle = "Best Treatment after all simulations",
-        icon = icon("table"),
-        color = "yellow"
-      )
-    })
-  }
-)
+    ####################################
+    ###### get variables ###############
+    
+    # number of lines plotted
+    nbrPlt <- as.numeric(input$Plot3BestTrts)
+    
+    # which treatment is assigned to which Line
+    nbrRedPlot <- checkValue(as.numeric(input$RedPlot))
+    nbrBluePlot <- checkValue(as.numeric(input$BluePlot))
+    nbrBlackPlot <- checkValue(as.numeric(input$BlackPlot))
+    
+    
+    #####################################
+    ###### pipeline #####################
+    
+    # Plot
+    if (inpVer() == "advanced") {
+      plotRatio(polyaAdv(), nbrPlt, nbrRedPlot, nbrBluePlot, nbrBlackPlot)
+    } else{
+      plotRatio(polya(), nbrPlt, nbrRedPlot, nbrBluePlot, nbrBlackPlot)
+    }
+    
+  })
+  
+##############################################
+############# create Info Boxes ##############
+##############################################
+  
+  output$bestTrt <- renderInfoBox({
+    infoBox(
+      title = "Treatment Nr",
+      value = ifelse(inpVer() == "advanced",bestTrt(polyaAdv())[1],bestTrt(polya())[1]),
+      subtitle = "is best Treatment (after all simulations)",
+      icon = icon("list"),
+      color = "blue"
+    )
+  })
+  
+  output$ndTrt <- renderInfoBox({
+    infoBox(
+      title = "Treatment Nr",
+      value = ifelse(inpVer() == "advanced",bestTrt(polyaAdv())[2],bestTrt(polya())[2]),
+      subtitle = "is 2nd best Treatment (after all simulations)",
+      icon = icon("list"),
+      color = "blue"
+    )
+  })
+  
+  output$rdTrt <- renderInfoBox({
+    infoBox(
+      title = "Treatment Nr",
+      value = ifelse(inpVer() == "advanced",bestTrt(polyaAdv())[3],bestTrt(polya())[3]),
+      subtitle = "is 3rd best Treatment (after all simulations)",
+      icon = icon("list"),
+      color = "blue"
+    )
+  })
+})

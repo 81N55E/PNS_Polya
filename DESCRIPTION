@@ -1,0 +1,10 @@
+Package: PolyasShinyUrn
+Version: 0.1
+Date: 2018-06-25
+Title: The Clinical Trial Dilemma - a Polya's Urn Simulation Shiny App
+Description: A shiny app that uses the Polya's urn simulation to simulate the Clinical Trial Dilemma
+Author: Mitja Seibold <mitja.seibold@student.uva.nl>
+Maintainer: Mitja Seibold <mitja.seibold@student.uva.nl>
+Encoding: UTF-8
+License: GPL-3.0
+RoxygenNote: 6.0.1.9000
