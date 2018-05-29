@@ -3,7 +3,7 @@ Polya's Urn Simulation in R + Shiny for PNS-Course@UvA
 
 This is code for a Polya's Urn Simulation (https://en.wikipedia.org/wiki/P%C3%B3lya_urn_model) written in R+Shiny.
 
-It was created for a course assignement at a stats course of the University of Amsterdam. 
+It was created for a course assignement at a statistics course of the University of Amsterdam. 
 
 This Simulation uses the Clinical Trial Dilemma (proposed by Wei, 1979¹) that can be represented by a Polya's Urn Simulation. The patients represent the number of trials. The number of treatments represents the number of balls (different treatments = different colors) in the urn. The number of simulations represents the number of urns.
 
