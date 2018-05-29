@@ -11,18 +11,18 @@ The ui.R file contains the user interface for the Shiny app.
 
 The server.R file contains the background calculation pipeline for the Shiny app.
 
-The func.R file contains all necessary functions that are used for the background calculations.
+The R folder contains all necessary functions for the app to run. 
 
-# When you run the app you can choose between three options: 
+The PolyasShinyUrn.tar.gz file contains the whole package that can be installed and then loaded into R. 
 
-[1] simple: you can choose your number of treatments and number of patients. The treatments are set to two treatments. The plot represents the first treatment (regardless whether it is the best treatment or not).
+# When you run the app you can choose between two main options: 
 
-[2] intermediate: you can now also choose the number of treatments. In addition you have the option to plot up to three treatments. Where red represent the best treatment, blue the second best treatment and black the third best treatment.
+[1] simple: you can choose your number of treatments, the number of patients and the number of simulations. In addition you have the option to indicate the success rate (0-100%) of the treatments (one option for all treatments). The plot represents maximum 3 treatments. You can choose which treatments should be displayed as well as how many (max 3) treatments should be displayed.
 
-[3] advanced: comming soon.
+[2] advanced: In advanced mode you have the same features as in simple mode but also additional ones. The additional once are: (1) choose different treatment success rate for the first two treatments; (2) choose different number of start rate for the first two treatments; (3) choose different number of return rate for the first two treatments and (4) choose different relapse rate for the frst two treatments. 
 
-
-Please use the Issues-Section for any questions or remarks.
+Please see the manual for more thorough documentation including installation guide, how to use the app and an example. 
+Please use the Issues-Section here on Github for any questions or remarks.
 
 # References
 ¹ Wei, L. J. (1979). The generalized Polya's urn design for sequential medical trials. The Annals of Statistics, 291-296.
