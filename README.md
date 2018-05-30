@@ -13,7 +13,18 @@ The server.R file contains the background calculation pipeline for the Shiny app
 
 The R folder contains all necessary functions for the app to run. 
 
-The PolyasShinyUrn.tar.gz file contains the whole package that can be installed and then loaded into R. 
+The PolyasShinyUrn.tar.gz file contains the whole package that can be installed and then loaded into R.
+
+# Installation
+
+With the devtool-package installed, you can use install_github("81N55E/PNS") to download and install the package in one go.
+Otherwise download the zipfile and use the "R CMD PolyasShinyUrn.tar.gz" in the terminal to install the package.
+
+Load the package by library(PolyasShinyUrn).
+
+[Caution] The shiny package as well as the shinydashboard package should be installed and loaded.
+
+In your dedicated workspace runApp() to start the shiny app.
 
 # When you run the app you can choose between two main options: 
 
