@@ -155,20 +155,37 @@ shinyServer(function(input, output, session) {
 ############# create Info Boxes ##############
 ##############################################
   
+  # get best treatment over all simulations
   output$bestTrt <- renderInfoBox({
-    infoBox(
+    infoBox( 
       title = "Treatment Nr",
-      value = ifelse(inpVer() == "advanced",bestTrt(polyaAdv())[1],bestTrt(polya())[1]),
+      value = ifelse(inpVer() == "advanced",
+                     as.numeric(names(sort(table(bestTrt(polyaAdv())[1, ]), decreasing = TRUE)[1])),
+                     as.numeric(names(sort(table(bestTrt(polya())[1, ]), decreasing = TRUE)[1]))),
       subtitle = "is best Treatment (after all simulations)",
       icon = icon("list"),
       color = "blue"
     )
   })
   
+  # get ratio of best treatment
+  output$bestTrtRat <- renderInfoBox({
+    infoBox( 
+      title = "Is best threatment in",
+      value = ifelse(inpVer() == "advanced",
+                     (as.numeric(sort(table(bestTrt(polyaAdv())[1, ]), decreasing = TRUE)[1])/nbrS())*100,
+                     (as.numeric(sort(table(bestTrt(polya())[1, ]), decreasing = TRUE)[1])/nbrS())*100),
+      subtitle = "% of simulations",
+      icon = icon("list")
+    )
+  })
+  
   output$ndTrt <- renderInfoBox({
     infoBox(
       title = "Treatment Nr",
-      value = ifelse(inpVer() == "advanced",bestTrt(polyaAdv())[2],bestTrt(polya())[2]),
+      value = ifelse(inpVer() == "advanced",
+                     as.numeric(names(sort(table(bestTrt(polyaAdv())[2, ]), decreasing = TRUE)[1])),
+                     as.numeric(names(sort(table(bestTrt(polya())[2, ]), decreasing = TRUE)[1]))),
       subtitle = "is 2nd best Treatment (after all simulations)",
       icon = icon("list"),
       color = "blue"
@@ -178,7 +195,9 @@ shinyServer(function(input, output, session) {
   output$rdTrt <- renderInfoBox({
     infoBox(
       title = "Treatment Nr",
-      value = ifelse(inpVer() == "advanced",bestTrt(polyaAdv())[3],bestTrt(polya())[3]),
+      value = ifelse(inpVer() == "advanced",
+                     as.numeric(names(sort(table(bestTrt(polyaAdv())[3, ]), decreasing = TRUE)[1])),
+                     as.numeric(names(sort(table(bestTrt(polya())[3, ]), decreasing = TRUE)[1]))),
       subtitle = "is 3rd best Treatment (after all simulations)",
       icon = icon("list"),
       color = "blue"

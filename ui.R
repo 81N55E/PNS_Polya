@@ -160,6 +160,7 @@ shinyUI <- dashboardPage(
         box(width = 8, title = "Graph",
             plotOutput("myplot")),
         infoBoxOutput("bestTrt"),
+        infoBoxOutput("bestTrtRat"),
         infoBoxOutput("ndTrt"),
         infoBoxOutput("rdTrt")
       ),
