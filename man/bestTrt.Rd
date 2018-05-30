@@ -10,7 +10,7 @@ bestTrt(mtrx)
 \item{3D}{matrix (treatment x patients x simulations)}
 }
 \value{
-vector with the 3 best treatments over patients and simulations
+2D matrix with the 3 best treatments over patients and simulations
 }
 \description{
 function that gets a 3D matrix as an input and returns a vector with the 3 best treatments over patients and simulations

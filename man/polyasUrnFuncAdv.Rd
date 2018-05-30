@@ -15,27 +15,16 @@ polyasUrnFuncAdv(pat, sim, trt = 2, trtRat1 = 100, trtRat2 = 100,
 
 \item{Number}{of treatments (default = 2)}
 
-\item{Success}{Rate of treatment 1 (default = 100%)}
-
-\item{Success}{Rate of treatment 2 (default = 100%)}
-
-\item{Number}{of Balls in the beginning for treatment 1 (default = 1)}
-
-\item{Number}{of Balls in the beginning for treatment 2 (default = 1)}
-
-\item{Number}{of returning balls for treatment 1 (default = 1)}
-
-\item{Number}{of returning balls for treatment 2 (default = 1)}
-
-\item{Number}{of relapse of treatment 1 (default = 0)}
-
-\item{Number}{of relapse of treatment 2 (default = 0)}
+\item{...}{}
 }
 \value{
 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation
 }
 \description{
 function that represents the advanced polya's urn simulation setup and creates a 3D matrix (treatment x patients x simulations) to be used for the \code{\link{plotRatio}}
+Besides the same input as in \code{\link{polyasUrnFuncSimple}} additionally you have the ability to
+change the treatment success rate for treatment 1 and 2, the number of starting balls (for treatment 1 and 2),
+the number of return balls (for treatment 1 and 2) and the relapse rate of treatment 1 and 2.
 }
 \examples{
 p <- 100

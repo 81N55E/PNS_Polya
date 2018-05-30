@@ -12,6 +12,8 @@ polyasUrnFuncSimple(pat, sim, trt = 2, trtRat = 100)
 \item{Number}{of simulations}
 
 \item{Number}{of treatments (default = 2)}
+
+\item{...}{}
 }
 \value{
 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation
