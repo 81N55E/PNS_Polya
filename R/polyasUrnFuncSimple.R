@@ -5,6 +5,7 @@
 #' @param Number of patients
 #' @param Number of simulations
 #' @param Number of treatments (default = 2) 
+#' @param ...
 #'  
 #' @return 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation
 #' 

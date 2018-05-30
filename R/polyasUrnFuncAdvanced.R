@@ -1,18 +1,14 @@
 #' Polya's Urn Advanced Function
 #' 
 #' function that represents the advanced polya's urn simulation setup and creates a 3D matrix (treatment x patients x simulations) to be used for the \code{\link{plotRatio}}
+#' Besides the same input as in \code{\link{polyasUrnFuncSimple}} additionally you have the ability to
+#' change the treatment success rate for treatment 1 and 2, the number of starting balls (for treatment 1 and 2),
+#' the number of return balls (for treatment 1 and 2) and the relapse rate of treatment 1 and 2.
 #' 
 #' @param Number of patients
 #' @param Number of simulations
 #' @param Number of treatments (default = 2)
-#' @param Success Rate of treatment 1 (default = 100%)
-#' @param Success Rate of treatment 2 (default = 100%)
-#' @param Number of Balls in the beginning for treatment 1 (default = 1)
-#' @param Number of Balls in the beginning for treatment 2 (default = 1)
-#' @param Number of returning balls for treatment 1 (default = 1)
-#' @param Number of returning balls for treatment 2 (default = 1)
-#' @param Number of relapse of treatment 1 (default = 0)
-#' @param Number of relapse of treatment 2 (default = 0)
+#' @param ...
 #'  
 #' @return 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation
 #' 
@@ -64,10 +60,11 @@ polyasUrnFuncAdv <- function(pat,
       # for loop for the # patients
       getElm <-
         sample(urn, 1)                                      # take random element from urn
-      
       if (getElm == 1) {
         # checks if drawn Element is equal to 1
-        if (sample(1:100, 1) <= trtRat1) {
+        s1 <- sample(1:100, 1)
+        # gets a smaple out of 100
+        if (s1 <= trtRat1) {
           # checks the success rate of treatment 1
           urn <-
             c(urn, rep(getElm, nbrRetur1))                  # update urn (add number of return balls for treatment 1)
@@ -77,7 +74,9 @@ polyasUrnFuncAdv <- function(pat,
         
       } else if (getElm == 2) {
         # check if drawn element is equalt to 2
-        if (sample(1:100, 1) <= trtRat2) {
+        s2 <- sample(1:100, 1)
+        # gets a sample out of 100
+        if (s2 <= trtRat2) {
           # checks success rate of treatment 2
           urn <- c(urn, rep(getElm, nbrRetur2))            # update urn (add number of return balls for treatment 2)
         } else {
@@ -99,10 +98,10 @@ polyasUrnFuncAdv <- function(pat,
           urn3 <-
             urn[!urn %in% c(1, 2)]            # create single urn without treatment 1&2
           
-          if (nbrRelap1 > 0) {
+          if (nbrRelap1 > 0 & length(urn1)>nbrRelap1) {
             urn1 <- head(urn1,-(nbrRelap1))   # update urn (minus the relapse score rate for treatment 1)
           }
-          if (nbrRelap2 > 0) {
+          if (nbrRelap2 > 0 & length(urn2)>nbrRelap2) {
             urn2 <- head(urn2, -(nbrRelap2))  # update urn (minus the relapse score rate for treatment 2)
           }
           urn <- c(urn1, urn2, urn3)
