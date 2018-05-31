@@ -35,5 +35,9 @@ In your dedicated workspace run polyasShinyRoundup() to start the shiny app.
 Please see the manual for more thorough documentation including installation guide, how to use the app and an example. 
 Please use the Issues-Section here on Github for any questions or remarks.
 
+# Issues
+If you have troubles running the ?help command for any function (an error occures) -> reload the session using:
+.rs.restartR()
+
 # References
 ¹ Wei, L. J. (1979). The generalized Polya's urn design for sequential medical trials. The Annals of Statistics, 291-296.
