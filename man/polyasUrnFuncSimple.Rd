@@ -7,13 +7,13 @@
 polyasUrnFuncSimple(pat, sim, trt = 2, trtRat = 100)
 }
 \arguments{
-\item{Number}{of patients}
+\item{pat}{Number of patients}
 
-\item{Number}{of simulations}
+\item{sim}{Number of simulations}
 
-\item{Number}{of treatments (default = 2)}
+\item{trt}{Number of treatments (default = 2)}
 
-\item{...}{}
+\item{trtRat}{Success rate of all treatments}
 }
 \value{
 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation

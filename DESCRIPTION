@@ -1,5 +1,5 @@
 Package: PolyasShinyUrn
-Version: 0.1
+Version: 0.3
 Date: 2018-06-25
 Title: The Clinical Trial Dilemma - a Polya's Urn Simulation Shiny App
 Description: A shiny app that uses the Polya's urn simulation to simulate the Clinical Trial Dilemma

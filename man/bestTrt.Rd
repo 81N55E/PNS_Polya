@@ -7,13 +7,13 @@
 bestTrt(mtrx)
 }
 \arguments{
-\item{3D}{matrix (treatment x patients x simulations)}
+\item{mtrx}{3D matrix (treatment x patients x simulations)}
 }
 \value{
 2D matrix with the 3 best treatments over patients and simulations
 }
 \description{
-function that gets a 3D matrix as an input and returns a vector with the 3 best treatments over patients and simulations
+function that gets a 3D matrix as an input and returns a 2D matrix with the 3 best treatments for each simulations
 }
 \examples{
 foo <- array(1:125, dim = c(5,5,5))

@@ -2,10 +2,10 @@
 #' 
 #' function that represents the simple polya's urn simulation setup and creates a 3D matrix (treatment x patients x simulations) to be used for the \code{\link{plotRatio}}
 #' 
-#' @param Number of patients
-#' @param Number of simulations
-#' @param Number of treatments (default = 2) 
-#' @param ...
+#' @param pat Number of patients
+#' @param sim Number of simulations
+#' @param trt Number of treatments (default = 2) 
+#' @param trtRat Success rate of all treatments
 #'  
 #' @return 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation
 #' 

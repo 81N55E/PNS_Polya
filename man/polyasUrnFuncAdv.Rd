@@ -9,13 +9,27 @@ polyasUrnFuncAdv(pat, sim, trt = 2, trtRat1 = 100, trtRat2 = 100,
   nbrRelap1 = 0, nbrRelap2 = 0)
 }
 \arguments{
-\item{Number}{of patients}
+\item{pat}{Number of patients}
 
-\item{Number}{of simulations}
+\item{sim}{Number of simulations}
 
-\item{Number}{of treatments (default = 2)}
+\item{trt}{Number of treatments (default = 2)}
 
-\item{...}{}
+\item{trtRat1}{Success rate of 1. treatment}
+
+\item{trtRat2}{Success rate of 2. treatment}
+
+\item{nbrBalls1}{Beginn rate of balls for 1. treatment}
+
+\item{nbrBalls2}{Beginn rate of balls for 2. treatment}
+
+\item{nbrRetur1}{Return rate of balls for 1. treatment}
+
+\item{nbrRetur2}{Return rate of balls for 2. treatment}
+
+\item{nbrRelap1}{Relapse rate of balls for 1. treatment}
+
+\item{nbrRelap2}{Relapse rate of balls for 2. treatment}
 }
 \value{
 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation

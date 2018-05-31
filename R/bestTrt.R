@@ -1,8 +1,8 @@
 #' Best Treatment Function
 #' 
-#' function that gets a 3D matrix as an input and returns a vector with the 3 best treatments over patients and simulations
+#' function that gets a 3D matrix as an input and returns a 2D matrix with the 3 best treatments for each simulations
 #' 
-#' @param 3D matrix (treatment x patients x simulations)
+#' @param mtrx 3D matrix (treatment x patients x simulations)
 #' 
 #' @return 2D matrix with the 3 best treatments over patients and simulations
 #' 

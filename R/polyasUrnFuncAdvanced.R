@@ -5,10 +5,17 @@
 #' change the treatment success rate for treatment 1 and 2, the number of starting balls (for treatment 1 and 2),
 #' the number of return balls (for treatment 1 and 2) and the relapse rate of treatment 1 and 2.
 #' 
-#' @param Number of patients
-#' @param Number of simulations
-#' @param Number of treatments (default = 2)
-#' @param ...
+#' @param pat Number of patients
+#' @param sim Number of simulations
+#' @param trt Number of treatments (default = 2)
+#' @param trtRat1 Success rate of 1. treatment
+#' @param trtRat2 Success rate of 2. treatment
+#' @param nbrBalls1 Beginn rate of balls for 1. treatment
+#' @param nbrBalls2 Beginn rate of balls for 2. treatment
+#' @param nbrRetur1 Return rate of balls for 1. treatment
+#' @param nbrRetur2 Return rate of balls for 2. treatment
+#' @param nbrRelap1 Relapse rate of balls for 1. treatment
+#' @param nbrRelap2 Relapse rate of balls for 2. treatment
 #'  
 #' @return 3D matrix (treatment x patients x simulations) with the ratio of each treatment compared to all treatments for each patient and each simulation
 #' 
