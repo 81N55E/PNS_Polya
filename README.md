@@ -17,14 +17,14 @@ The PolyasShinyUrn.tar.gz file contains the whole package that can be installed 
 
 # Installation
 
-With the devtool-package installed, you can use install_github("81N55E/PNS") to download and install the package in one go.
-Otherwise download the zipfile and use the "R CMD PolyasShinyUrn.tar.gz" in the terminal to install the package.
+With the devtool-package installed, you can use install_github("81N55E/PNS_Polya") to download and install the package in one go.
+Otherwise download the .zip file and use the command "R CMD PolyasShinyUrn.tar.gz" in the terminal to install the package.
 
 Load the package by library(PolyasShinyUrn).
 
 [Caution] The shiny package as well as the shinydashboard package should be installed and loaded.
 
-In your dedicated workspace runApp() to start the shiny app.
+In your dedicated workspace run polyasShinyRoundup() to start the shiny app.
 
 # When you run the app you can choose between two main options: 
 
